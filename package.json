@@ -1,0 +1,14 @@
+{
+  "name": "app-5",
+  "version": "1.0.0",
+  "description": "learning mongodb with nodejs | to see mongoDB data use RoboMongo Software",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.1.4"
+  }
+}
