@@ -6,6 +6,10 @@ const { User } = require("../server/models/user");
 
 // Todo.deleteMany({}).then(result => console.log(result));
 
+// Todo.findOneAndRemove({_id: '5b8aab6ee90d79196c394eb5'}).then((todo) => {
+//
+// });
+
 Todo.findByIdAndRemove("5b8aab6ee90d79196c394eb5").then(doc => {
   console.log(doc);
 });
