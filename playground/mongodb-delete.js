@@ -1,38 +1,34 @@
-// const MongoClient = require("mongodb").MongoClient;
-const { MongoClient, ObjectID } = require("mongodb");
+// const MongoClient = require('mongodb').MongoClient;
+const {MongoClient, ObjectID} = require('mongodb');
 
-const dbName = "TodoApp";
-
-MongoClient.connect(
-  "mongodb://localhost:27017",
-  { useNewUrlParser: true },
-  (err, database) => {
-    if (err) return console.log("Unable to connet to MongoDB server\n");
-
-    console.log("Successfully connected to MongoDB server\n");
-
-    const db = database.db(dbName);
-
-    // db.collection("Todos")
-    //   .deleteMany({ text: "3rd is here" })
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err));
-
-    // db.collection("Todos")
-    //   .deleteOne({ text: "3rd is here" })
-    //   .then(res => console.log(res.result))
-    //   .catch(err => console.log(err));
-
-    // db.collection("Todos")
-    //   .findOneAndDelete({ completed: true })
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err));
-
-    db.collection("Users")
-      .findOneAndDelete({ _id: ObjectID("5b8704814864eb22f0671db0") })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-
-    // database.close();
+MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) => {
+  if (err) {
+    return console.log('Unable to connect to MongoDB server');
   }
-);
+  console.log('Connected to MongoDB server');
+
+  // deleteMany
+  // db.collection('Todos').deleteMany({text: 'Eat lunch'}).then((result) => {
+  //   console.log(result);
+  // });
+
+  // deleteOne
+  // db.collection('Todos').deleteOne({text: 'Eat lunch'}).then((result) => {
+  //   console.log(result);
+  // });
+
+  // findOneAndDelete
+  // db.collection('Todos').findOneAndDelete({completed: false}).then((result) => {
+  //   console.log(result);
+  // });
+
+  // db.collection('Users').deleteMany({name: 'Andrew'});
+
+  db.collection('Users').findOneAndDelete({
+    _id: new ObjectID("57ac8d47878a299e5dc21bc8")
+  }).then((results) => {
+    console.log(JSON.stringify(results, undefined, 2));
+  });
+
+  // db.close();
+});

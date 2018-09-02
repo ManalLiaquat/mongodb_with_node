@@ -1,19 +1,20 @@
-const { ObjectID } = require("mongodb");
+const {ObjectID} = require('mongodb');
 
-const { mongoose } = require("../server/db/mongoose");
-const { Todo } = require("../server/models/todo");
-const { User } = require("../server/models/user");
+const {mongoose} = require('./../server/db/mongoose');
+const {Todo} = require('./../server/models/todo');
+const {User} = require('./../server/models/user');
 
-// Todo.deleteMany({}).then(result => console.log(result));
+// Todo.remove({}).then((result) => {
+//   console.log(result);
+// });
 
-// Todo.findOneAndRemove({_id: '5b8aab6ee90d79196c394eb5'}).then((todo) => {
+// Todo.findOneAndRemove
+// Todo.findByIdAndRemove
+
+// Todo.findOneAndRemove({_id: '57c4610dbb35fcbf6fda1154'}).then((todo) => {
 //
 // });
 
-Todo.findByIdAndRemove("5b8aab6ee90d79196c394eb5").then(doc => {
-  console.log(doc);
+Todo.findByIdAndRemove('57c4610dbb35fcbf6fda1154').then((todo) => {
+  console.log(todo);
 });
-
-
-// Todo.find().then(data => console.log(data));
-// Todo.insertMany({text: 'Hi this is mongoos-remove.js file insertion to local DB'})
