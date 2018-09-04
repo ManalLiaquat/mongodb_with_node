@@ -5,10 +5,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { ObjectID } = require("mongodb");
 
-let { mongoose } = require("./db/mongoose");
-let { Todo } = require("./models/todo");
-let { User } = require("./models/user");
-let { authenticate } = require("./middleware/authenticate");
+var { mongoose } = require("./db/mongoose");
+var { Todo } = require("./models/todo");
+var { User } = require("./models/user");
+var { authenticate } = require("./middleware/authenticate");
 
 var app = express();
 const port = process.env.PORT;
@@ -133,7 +133,7 @@ app.get("/users/me", authenticate, (req, res) => {
 
 app.post("/users/login", (req, res) => {
   var body = _.pick(req.body, ["email", "password"]);
-  // res.send(body);
+
   User.findByCredentials(body.email, body.password)
     .then(user => {
       return user.generateAuthToken().then(token => {
@@ -143,6 +143,19 @@ app.post("/users/login", (req, res) => {
     .catch(e => {
       res.status(400).send();
     });
+});
+
+app.delete("/users/me/token", authenticate, (req, res) => {
+  console.log('********');
+  
+  req.user.removeToken(req.token).then(
+    () => {
+      res.status(200).send();
+    },
+    (e) => {
+      res.status(400).send(e);
+    }
+  );
 });
 
 app.listen(port, () => {
